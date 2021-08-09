@@ -1,0 +1,9 @@
+export const GET_FEATURES = "GET_FEATURES";
+export const GET_FEATURE = "GET_FEATURE";
+export const DELETE_FEATURE = "DELETE_FEATURE";
+
+//Feature Task
+export const GET_FEATURE_TASK= "GET_FEATURETASK";
+export const DELETE_FEATURE_TASK = "DELETE_FEATURE_TASK";
+
+export const GET_ERRORS = "GET_ERRORS";
