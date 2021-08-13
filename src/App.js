@@ -11,8 +11,11 @@ import AddFeature from './components/Feature/AddFeature';
 import {Provider} from "react-redux";
 import store from "./store/store"
 import UpdateFeature from './components/Feature/UpdateFeature';
-import { FeatureItem } from './components/Feature/FeatureItem';
 import FeatureTaskItem from './components/Feature/FeatureTaskItem';
+import AddProduct from './components/Product/AddProduct';
+import ProductTask from './components/Product/ProductTask';
+import AddProductTask from './components/Product/AddProductTask';
+import ProductBoard from './components/Product/ProductBoard';
 
 
 class App extends Component {
@@ -27,6 +30,9 @@ class App extends Component {
        <Route exact path="/addFeature" component={AddFeature} />
        <Route exact path="/updateFeature/:id" component={UpdateFeature} />
        <Route exact path="/featureTask/:id" component={FeatureTaskItem} />
+       <Route exact path="/addProduct" component={AddProduct} />
+       <Route exact path="/productBoard/:id" component={ProductBoard} />
+       <Route exact path="/addProductTask/:id" component={AddProductTask} />
        <Footer/>
       </div>
       </Router>

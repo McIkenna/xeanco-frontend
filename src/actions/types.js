@@ -7,3 +7,15 @@ export const GET_FEATURE_TASK= "GET_FEATURETASK";
 export const DELETE_FEATURE_TASK = "DELETE_FEATURE_TASK";
 
 export const GET_ERRORS = "GET_ERRORS";
+
+//Product
+export const GET_PRODUCTS = "GET_PRODUCTS";
+export const GET_PRODUCT= "GET_PRODUCT";
+export const DELETE_PRODUCT = "DELETE_PRODUCT";
+
+//ProductLog
+
+export const GET_PRODUCTLOG = "GET_PRODUCTLOG";
+export const GET_PRODUCT_TASK= "GET_PRODUCT_TASK";
+export const GET_PRODUCT_TASKS= "GET_PRODUCT_TASKS";
+export const DELETE_PRODUCT_TASK = "DELETE_PRODUCT_TASK";

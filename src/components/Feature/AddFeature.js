@@ -16,7 +16,7 @@ export class AddFeature extends Component {
             featureImage : "",
             file: null,
             featureImageName:"",
-            image_preview: '',
+            image_preview: "",
             errors: {}
            
         }
@@ -84,7 +84,7 @@ export class AddFeature extends Component {
         return (
          
             <div className={styles.formContainer}>
-                <h1>New Feature added</h1>
+                <h1>New Feature</h1>
                 <h1>{errors.error}</h1>
         <form className="row g-3" onSubmit={this.onSubmit}>
 

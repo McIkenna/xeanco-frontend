@@ -31,9 +31,9 @@ export class FeatureItem extends Component {
                >
                   <div className={classes.bar}></div>
                 </div>
-               <Link to={`/featureTask/${feature.featureIdentifier}`} className="btn btn-primary ">View</Link>
-               <Link to={`/updateFeature/${feature.featureIdentifier}`} className="btn btn-dark" disabled>Update</Link>
-               <button className="btn btn-secondary" onClick={this.onDelete.bind(this, feature.featureIdentifier)}>Delete</button>
+               <Link to={`/featureTask/${feature.featureIdentifier}`} className="btn btn-outline-secondary me-2" >View</Link>
+               <Link to={`/updateFeature/${feature.featureIdentifier}`} className="btn btn-outline-secondary me-2" disabled>Update</Link>
+               <button className="btn btn-danger" onClick={this.onDelete.bind(this, feature.featureIdentifier)}>Delete</button>
               </div>
             </div>          
           </div>
