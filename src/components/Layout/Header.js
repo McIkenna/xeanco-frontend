@@ -19,7 +19,10 @@ class Header extends Component {
           <Link className="nav-link active" aria-current="page" to="/">Home</Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#">Features</a>
+          <Link className="nav-link active" aria-current="page" to="#">Service</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link active" aria-current="page" to="/about">About</Link>
         </li>
         <li className="nav-item">
           <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>

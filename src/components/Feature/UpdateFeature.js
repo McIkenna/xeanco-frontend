@@ -109,8 +109,6 @@ export class UpdateFeature extends Component {
                 <h1>Updated Feature</h1>
                 
         <form className="row g-3" onSubmit={this.onSubmit}>
-
-
         <div className={classes.imgContainer}>
         <img src={featureImage} alt="..." className={classes.imgBox}/>
         <img src={this.state.image_preview} alt="..." className={classes.imgBox}/>

@@ -58,7 +58,7 @@ export const createProductTask = (
   ) => async dispatch => {
     try {
       await axios.post(`http://localhost:8080/api/productTask/${productIdentifier_id}`, product_task);
-      history.push(`/projectTask/${productIdentifier_id}`);
+      history.push(`/projectBoard/${productIdentifier_id}`);
       dispatch({
         type: GET_ERRORS,
         payload: {}

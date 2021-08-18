@@ -1,8 +1,8 @@
 import React from 'react'
-
+import classes from "../Feature/feature.module.css"
 const SearchBox = (props) =>  {
     return (
-        <div>
+        <div >
         
         <input 
         className="form-control me-4" 

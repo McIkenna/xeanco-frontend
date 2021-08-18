@@ -17,7 +17,7 @@ export class ProductTask extends Component {
       </div>
       <div className="col-md-8">
         <div className="card-body">
-        <img class="card-img-top" src={productTaskImage} alt="Card image cap"/>
+        <img className="card-img-top" src={productTaskImage} alt="Card image cap"/>
           <h5 className="card-title">{product_task.productTskName}</h5>
           <p className="card-text">{product_task.productTskSummary}</p><br />
           <p className="card-text">{product_task.productTskDetails}</p>

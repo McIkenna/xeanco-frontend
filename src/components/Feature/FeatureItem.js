@@ -3,16 +3,14 @@ import classes from "./feature.module.css"
 import { Link } from 'react-router-dom';
 import { deleteFeature } from '../../actions/FeatureActions';
 import { connect } from 'react-redux';
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 export class FeatureItem extends Component {
     onDelete = id =>{
            this.props.deleteFeature(id)
     }
     render() {
-
         const {feature} = this.props;
         const featureImage = `data:image/jpeg;base64,${feature.featureImage}`
-
         return (
             <div className={classes.container}>
         <div className={classes.content}>
