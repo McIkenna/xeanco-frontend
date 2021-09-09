@@ -83,11 +83,10 @@ export const createProductTask = (
 
 
 
-/*
 
-export const updateFeature = (feature, history) => async dispatch => {
+export const updateProduct = (product, history) => async dispatch => {
     try{
-        await axios.put(`http://localhost:8080/api/feature`, feature)
+        await axios.put(`http://localhost:8080/api/product`, product)
         history.push("/")
         dispatch({
             type: GET_ERRORS,
@@ -101,7 +100,7 @@ export const updateFeature = (feature, history) => async dispatch => {
     }
 }
 
-
+/*
 
 export const getFeatureTask = (featureTaskId, history) => async dispatch => {
     try{

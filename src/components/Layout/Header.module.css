@@ -1,0 +1,43 @@
+#navbar {
+position:fixed;
+top:0;
+width:100%;
+z-index: 100;
+padding: 2% 5%;
+background-color: #fefefe;
+}
+
+#navbar_active{
+position:fixed;
+padding: 2% 5%;
+top:0;
+width:100%;
+z-index: 100;
+background-color: #fefefeb7;
+}
+.nav_elements{
+    display:inline-flex;
+    list-style: none;
+
+    
+}
+.nav_link{
+    text-decoration: none;
+    letter-spacing: 0.2em;
+    padding: 0 1.5em;
+    color: #fefefe;
+  
+    font-family: 'Montserrat', sans-serif;
+}
+.nav_item{
+    background-color: #52ab98;
+    border-radius: 20px;
+    padding: 3px;
+    margin: 0 2%;
+}
+.nav_link:hover{
+    color: #2b5e53;
+}
+.nav_item:hover{
+    background-color: #92c4b9;
+}

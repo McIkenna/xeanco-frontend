@@ -143,7 +143,7 @@ export class UpdateFeature extends Component {
                 />
             </div>
             <div className="col-12">
-                <label className="form-label">Detals</label>
+                <label className="form-label">Details</label>
                 <textarea 
                 type="textarea" 
                 className="form-control" 

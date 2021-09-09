@@ -9,6 +9,7 @@ const SearchBox = (props) =>  {
         type="search" 
         placeholder="Search" 
         aria-label="Search"
+        className={props.class}
 
         value = {props.value}
         onChange={props.onChange}

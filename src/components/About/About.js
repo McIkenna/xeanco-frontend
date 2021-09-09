@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import PropTypes from "prop-types"
 import { getAbouts } from '../../actions/AboutActions';
 import { deleteAbout } from '../../actions/AboutActions';
+import style from "./about.module.css"
 
 export class About extends Component {
     onDelete = id =>{
@@ -17,15 +18,15 @@ export class About extends Component {
     render() {
         const {abouts} = this.props.about;
         return (
-    <div className="contianer-fluid">
+    <div className={style.aboutContainer}>
    {abouts.map((about) => (
-         <div className="contianer-fluid" key={about.id}>
-         <div className="card">
-         <div className="card-header">{about.aboutName}</div>
-       <div className="card-body">
-         <h4 className="card-title">{about.aboutHeading}</h4>
-         <h5 className="card-title">{about.aboutSubHeading}</h5>
-         <p className="card-text">{about.aboutDescription}</p>
+         <div className={style.content} key={about.id}>
+         <div className={style.card}>
+         <div className={style.card_header}><h1>{about.aboutName}</h1></div>
+       <div className={style.card_body}>
+         <div className={style.card_title}><h2>{about.aboutHeading}</h2></div>
+         <div className={style.card_subTitle}><h4>{about.aboutSubHeading}</h4></div>
+         <p className={style.card_text}>{about.aboutDescription}</p>
        </div>
        </div>
        <button className="btn btn-danger" onClick={this.onDelete.bind(this, about.id)}>Delete</button>

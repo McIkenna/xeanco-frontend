@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { getFeatureTask } from '../../actions/FeatureActions'
 import {connect} from "react-redux";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
+import styles from "./feature.module.css"
 
 export class FeatureTaskItem extends Component {
 
@@ -16,11 +17,12 @@ export class FeatureTaskItem extends Component {
         const featureTaskImage = `data:image/jpeg;base64,${feature_task.image}`
       
         return (
-            <div className="container-fluid">
-            <h1>{feature_task.headline}</h1>
-            <img src={featureTaskImage} alt="..."/>
-                
-      <p>{feature_task.summary}</p>
+            <div className={styles.taskContainer} >
+                <div className={styles.header}>
+            <h1 className={styles.headline}>{feature_task.headline}</h1>
+            </div>
+            <img src={featureTaskImage} className={styles.featureImg}  alt="..."/>  
+      <p className={styles.summary}>{feature_task.summary}</p>
     </div>
 
         )

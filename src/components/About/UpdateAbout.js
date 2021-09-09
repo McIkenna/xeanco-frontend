@@ -121,7 +121,6 @@ UpdateAbout.propTypes = {
 }
 
 const mapStateToProps = state => ({
-
     about: state.about.about
 })
 

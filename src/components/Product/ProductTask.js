@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import style from "./product.module.css"
 
 
 export class ProductTask extends Component {
@@ -8,24 +9,23 @@ export class ProductTask extends Component {
       const productTaskImage = `data:image/jpeg;base64,${product_task.productTskImg}`
       
         return (
-
-            <div className="container py-4">
-                <div className="card mb-3" style={{width: "540px"}}>
-  <div className="row no-gutters">
-    <div>
-      <div className="col-md-4">
-      </div>
-      <div className="col-md-8">
-        <div className="card-body">
-        <img className="card-img-top" src={productTaskImage} alt="Card image cap"/>
-          <h5 className="card-title">{product_task.productTskName}</h5>
-          <p className="card-text">{product_task.productTskSummary}</p><br />
-          <p className="card-text">{product_task.productTskDetails}</p>
+          <div className={style.card_container} >
+          <div className={style.card} style={{maxWidth: "100%"}} >
+          <div className={style.card_inner}>
+            <div className={style.leftSide}>
+        <img src={productTaskImage} alt="...."/>
+          </div>
+          <div className={style.rightSide}>
+      <div className={style.card_body}>
+          <h4 className={style.card_title}>{product_task.productTskName}</h4>
+          <p className={style.card_paragraph}>{product_task.productTskSummary}</p><br />
+          
         </div>
       </div>
+      
 </div>
-  </div>
-  </div>
+</div>
+
 </div>
            
         )

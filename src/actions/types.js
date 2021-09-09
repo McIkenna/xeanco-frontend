@@ -34,7 +34,7 @@ export const DELETE_INTRO = "DELETE_INTRO";
 export const GET_CLIENT = "GET_CLIENT";
 export const GET_CLIENTS= "GET_CLIENTS";
 export const DELETE_CLIENT = "DELETE_CLIENT";
-//Clients Page
+//Extra Page
 export const GET_EXTRA = "GET_EXTRA";
 export const GET_EXTRAS= "GET_EXTRAS";
 export const DELETE_EXTRA = "DELETE_EXTRA";

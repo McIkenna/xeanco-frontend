@@ -13,35 +13,33 @@ export class ProductItem extends Component {
         const {product} = this.props;
         const productImage = `data:image/jpeg;base64,${product.productImg}`
         return (
-            <section className={styles.dark}>
-	<div className="container py-4">
-    
-		<h1 className="h1 text-center" id="pageHeaderTitle"></h1>
-		<article className={styles.postcard}>
-			<Link className={styles.postcard__img_link} to={`/productBoard/${product.productIdentifier}`}>
-				<img className={styles.postcard__img} src={productImage} alt="Image Title" />
-			</Link>
-			<div className={styles.postcard__text}>
-			<Link to={`/productBoard/${product.productIdentifier}`}  ><h1 className={styles.postcard__title} >{product.productName}</h1>   
-            </Link>
-				<div className={styles.postcard__subtitle}>
-					
-				</div>
-				<div className={styles.postcard__bar}></div>
-				<div className={styles.postcard__preview_txt}>{product.productSummary}</div>
+		<div className={styles.poster_container}>
+		<div className={styles.poster}>
+			
+		<div className={styles.poster_text}>
+			<Link to={`/productBoard/${product.productIdentifier}`}  
+			style={{ textDecoration: 'none'}}
+			>
+				<h1 className={styles.poster_title} >{product.productName}</h1>   
+            </Link>				
+				<div className={styles.poster_summary}>{product.productSummary}</div>
 				<ul className={styles.postcard__tagbox}>
-					<li className={styles.tag__item}><i className="fas fa-tag mr-2"></i>Podcast</li>
-					<li className={styles.tag__item}><i className="fas fa-clock mr-2"></i>55 mins.</li>
+				<Link to={`/addProductTask/${product.productIdentifier}`} className="btn btn-outline-secondary me-2" disabled>Add Task</Link>
+               <Link to={`/updateProduct/${product.productIdentifier}`} className="btn btn-outline-secondary me-2" disabled>Update</Link>
+			   <button className="btn btn-danger" onClick={this.onDelete.bind(this, product.productIdentifier)}>Delete</button>
 				</ul>
-           
-                <Link to={`/addProductTask/${product.productIdentifier}`} className="btn btn-outline-secondary me-2" disabled>Add Task</Link>
-               <Link to={`//${product.productIdentifier}`} className="btn btn-outline-secondary me-2" disabled>Update</Link>
-               <button className="btn btn-danger" onClick={this.onDelete.bind(this, product.productIdentifier)}>Delete</button>
 			</div>
-		</article>
+
+			<div  className={styles.poster_img}>
+			<Link className={styles.postcard__img_link} to={`/productBoard/${product.productIdentifier}`}
+			>
+			<img className={styles.postcard__img} src={productImage} alt="Image Title" />
+			</Link>
+			</div>
+		</div>
      
 	</div>
-</section>
+
         )
     }
 }

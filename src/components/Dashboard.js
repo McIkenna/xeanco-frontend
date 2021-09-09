@@ -9,6 +9,12 @@ import SearchBox from './Layout/SearchBox';
 import ProductItem from './Product/ProductItem';
 import IntroItem from './Intro/IntroItem';
 import { getIntros, deleteIntro, getIntro } from '../actions/IntroActions';
+import { getClients } from '../actions/ClientActions';
+import { getExtras } from '../actions/ExtraAction';
+import ClientItem from './Client/ClientItem';
+import ExtraItem from './Extra/ExtraItem';
+import styles from './Dashboard.module.css';
+import { Carousel } from 'react-bootstrap';
 
 export class Dashboard extends Component {
 
@@ -25,6 +31,8 @@ componentDidMount(){
     this.props.getProducts();
     this.props.getAbouts();
     this.props.getIntros();
+    this.props.getClients();
+    this.props.getExtras();
     //this.props.getFeatureTask();
 }
 
@@ -32,6 +40,8 @@ componentDidMount(){
         let {features} = this.props.feature;
         let {products} = this.props.product;
         let {intros} = this.props.intro;
+        let {clients} = this.props.client;
+        let {extras} = this.props.extra;
        const filteredFeature = features.filter(feature => {
            const searchProp = this.state.searchValue.toLocaleLowerCase();
             if(feature.featureHeading.toLowerCase().includes(searchProp) || 
@@ -58,19 +68,57 @@ componentDidMount(){
         }
         return (
             <div>
-                <div className="container-fluid">
-                <SearchBox 
-                value={this.state.searchValue}
+           <section>
+                   <div  className={styles.introContainer}>
+               <div className={styles.searchBox}>
+            <SearchBox 
+                value= {this.state.searchValue}
                 onChange={onChangeHandler}
-                />
-                <h1>Dashboard</h1>
-               {intros.map(intro => (<IntroItem  key={intro.id} intro={intro}/>))} 
-               {filteredFeature.map(feature => (<FeatureItem key={feature.featureIdentifier} feature={feature} />))}
-
-               {filteredProduct.map(prod => (<ProductItem key={prod.productIdentifier} product={prod}/>))}
+                class={styles.searchInput}
+                /> 
                 </div>
-           
+                <div className={styles.introItem} >
+               <Carousel >
+             
+                   {intros.map(intro => (
+               <Carousel.Item interval={2000}>
+               <IntroItem  key={intro.id} intro={intro}  />
+               </Carousel.Item>
+               ))}
+               
+            </Carousel>
             </div>
+            </div>
+               </section> 
+               <section className={styles.feature}>{filteredFeature.map(feature => (<FeatureItem key={feature.featureIdentifier} feature={feature} />))}
+              </section> 
+              
+              <section className={styles.prod}> {filteredProduct.map(prod => (<ProductItem key={prod.productIdentifier} product={prod}/>))}
+              </section>
+               <section className={styles.extra}>
+               <Carousel 
+               controls={false}
+               indicators={false}>
+                   {extras.map(extra =>(
+                   <Carousel.Item interval={5000}>
+                   <ExtraItem key={extra.id} extra = {extra}/>
+                   </Carousel.Item>
+                   ))}
+                   </Carousel>
+                   </section>
+
+              <div className={styles.client_container}>
+                  <div className={styles.client_col}>
+                 
+              {clients.map(client => (
+                   <div className={styles.client_row}>
+              <ClientItem key={client.id} client={client}/>
+                  </div>))}
+              </div>
+              </div>
+              </div>
+          
+           
         )
     }
 }
@@ -80,7 +128,11 @@ Dashboard.propTypes = {
     getFeatures: PropTypes.func.isRequired,
     getProducts: PropTypes.func.isRequired,
     product : PropTypes.object.isRequired,
-    intro: PropTypes.object.isRequired
+    intro: PropTypes.object.isRequired,
+    client: PropTypes.object.isRequired,
+    getClients: PropTypes.func.isRequired,
+    extra: PropTypes.object.isRequired,
+    getExtras: PropTypes.func.isRequired
 
    // featureTask: PropTypes.object.isRequired,
    // getFeatureTask: PropTypes.func.isRequired
@@ -89,8 +141,10 @@ Dashboard.propTypes = {
 const mapStateToProps = state => ({
     feature: state.feature,
     product: state.product,
-    intro: state.intro
+    intro: state.intro,
+    client: state.client,
+    extra: state.extra 
  
    // featureTask: state.featureTask
 })
-export default connect(mapStateToProps, {getFeatures, getProducts, getAbouts, getIntros})(Dashboard)
+export default connect(mapStateToProps, {getFeatures, getProducts, getAbouts, getIntros, getClients, getExtras})(Dashboard)
