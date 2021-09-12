@@ -21,6 +21,8 @@ export class Footer extends Component {
 			<ul className={styles.box}>
 				<li className={styles.link_name}>Links</li>
 				<li> <Link aria-current="page" to="/">Home</Link></li>
+				<li><a href="/login">Login</a></li>
+				<li><Link to="/register">Register</Link></li>
 				<li><a href="#">Contact</a></li>
 				<li><Link aria-current="page" to="/about">About</Link></li>
 				

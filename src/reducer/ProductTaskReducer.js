@@ -23,7 +23,7 @@ export default function(state = initialState, action){
         case DELETE_PRODUCT_TASK:
             return{
                 ...state,
-                product_task: state.product_tasks.filter(product_task => product_task.productSequence !== action.payload)
+                product_tasks: state.product_tasks.filter(product_task => product_task.productSequence !== action.payload)
             }
             default:
                 return state;

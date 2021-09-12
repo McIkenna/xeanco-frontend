@@ -89,7 +89,10 @@ padding: 2% 10%;
 
 }
 
-
+.imgContainer img{
+  width: 500px;
+  height: auto;
+}
 
 .rightSide {
 position: relative;
@@ -118,8 +121,11 @@ padding : 0 5%;
     color: rgb(0, 0, 0);
     font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
-    padding: 5%;
+
     
+}
+#paragraph1{
+  padding: 2% 0;
 }
 
 @media screen and (max-width: 768px){

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from "../Feature/feature.module.css";
+import styles from "./product.module.css";
 import PropTypes from "prop-types"
 import {connect} from "react-redux"
 import { getProduct, updateProduct } from '../../actions/ProductActions';
@@ -7,7 +7,7 @@ export class UpdateProduct extends Component {
     constructor(){
         super()
         this.state = {
-            id: "",
+        id: "",
         productIdentifier: "",
         productName: "",
         productSummary: "",
@@ -86,22 +86,13 @@ export class UpdateProduct extends Component {
     }
     handleImagePreview = (e) => {
         let image_as_base64 = URL.createObjectURL(e.target.files[0])
-      
-         if(e.target.length > 0){
+
             this.setState({
 
                 image_preview: image_as_base64,
                 file : e.target.files[0],
                 productImgName : e.target.files[0].name
-                
             })
-            console.log(e.target.value);
-         }else{
-             this.setState({
-                 file: this.state.productDownloadUrl
-             })
-             console.log(this.state.productDownloadUrl);
-         }
            
      }
 

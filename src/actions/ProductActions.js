@@ -1,9 +1,9 @@
 import axios from "axios"
-import { DELETE_PRODUCT, GET_ERRORS, GET_PRODUCT, GET_PRODUCTLOG, GET_PRODUCTS, GET_PRODUCT_TASK, GET_PRODUCT_TASKS } from "./types";
-
+import { DELETE_PRODUCT, DELETE_PRODUCT_TASK, GET_ERRORS, GET_PRODUCT, GET_PRODUCTLOG, GET_PRODUCTS, GET_PRODUCT_TASK, GET_PRODUCT_TASKS } from "./types";
+import { proxy } from "../components/Constant/Proxy";
 export const createProduct = (product, history) => async dispatch => {
     try{
-        await axios.post(`http://localhost:8080/api/product`, product)
+        await axios.post(`${proxy}/api/product`, product)
         history.push("/")
         dispatch({
             type: GET_ERRORS,
@@ -18,7 +18,7 @@ export const createProduct = (product, history) => async dispatch => {
 }
 
 export const getProducts = () => async dispatch => {
-    const res = await axios.get("http://localhost:8080/api/product/all")
+    const res = await axios.get(`${proxy}/api/product/all`)
     dispatch({
         type: GET_PRODUCTS,
         payload: res.data
@@ -28,7 +28,7 @@ export const getProducts = () => async dispatch => {
 
 export const getProduct = (productId, history) => async dispatch => {
     try{
-        const res = await axios.get(`http://localhost:8080/api/product/${productId}`)
+        const res = await axios.get(`${proxy}/api/product/${productId}`)
         dispatch({
             type: GET_PRODUCT,
             payload: res.data
@@ -41,7 +41,7 @@ export const getProduct = (productId, history) => async dispatch => {
 export const deleteProduct = id => async dispatch => {
     if(window.confirm("Are you sure?"))
     {
-        await axios.delete(`http://localhost:8080/api/product/${id}`)
+        await axios.delete(`${proxy}/api/product/${id}`)
         dispatch({
             type: DELETE_PRODUCT,
             payload: id
@@ -50,15 +50,31 @@ export const deleteProduct = id => async dispatch => {
     }
 }
 
+export const updateProduct = (product, history) => async dispatch => {
+    try{
+        await axios.put(`${proxy}/api/product`, product)
+        history.push("/")
+        dispatch({
+            type: GET_ERRORS,
+            payload: {}
+        });
+    }catch(error){
+        dispatch({
+            type: GET_ERRORS,
+            payload: error.response.data
+        })
+    }
+}
 
+/* Product Task */
 export const createProductTask = (
     product_task,
     productIdentifier_id,
     history
   ) => async dispatch => {
     try {
-      await axios.post(`http://localhost:8080/api/productTask/${productIdentifier_id}`, product_task);
-      history.push(`/projectBoard/${productIdentifier_id}`);
+      await axios.post(`${proxy}/api/productTask/${productIdentifier_id}`, product_task);
+      history.push(`${proxy}/productBoard/${productIdentifier_id}`);
       dispatch({
         type: GET_ERRORS,
         payload: {}
@@ -71,9 +87,9 @@ export const createProductTask = (
     }
   };
   
-  export const getProductTask = productIdentifier_id => async dispatch => {
+  export const getProductTasks = productIdentifier_id => async dispatch => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/productTask/${productIdentifier_id}`);
+      const res = await axios.get(`${proxy}/api/productTask/${productIdentifier_id}`);
       dispatch({
         type: GET_PRODUCT_TASKS,
         payload: res.data
@@ -81,22 +97,48 @@ export const createProductTask = (
     } catch (err) {}
   };
 
+  export const getProductTask = (productlog_id, pt_id) => async dispatch => {
+    try {
+      const res = await axios.get(`${proxy}/api/productTask/${productlog_id}/${pt_id}`);
+      dispatch({
+        type: GET_PRODUCT_TASK,
+        payload: res.data
+      });
+    } catch (err) {}
+  };
 
+  export const updateProductTask = (
+    product_task,
+    productlog_id, 
+    pt_id,
+    history
+  ) => async dispatch => {
+    try {
+      await axios.put(`${proxy}/api/productTask/${productlog_id}/${pt_id}`, product_task);
+      history.push(`/productBoard/${productlog_id}`);
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    } catch (err) {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      });
+    }
+  };
 
-
-export const updateProduct = (product, history) => async dispatch => {
-    try{
-        await axios.put(`http://localhost:8080/api/product`, product)
-        history.push("/")
+  export const deleteProductTask = ( 
+      productlog_id, 
+    pt_id) => async dispatch => {
+    if(window.confirm("Are you sure?"))
+    {
+        await axios.delete(`${proxy}/api/productTask/${productlog_id}/${pt_id}`)
         dispatch({
-            type: GET_ERRORS,
-            payload: {}
-        });
-    }catch(error){
-        dispatch({
-            type: GET_ERRORS,
-            payload: error.response.data
+            type: DELETE_PRODUCT_TASK,
+            payload: pt_id
         })
+
     }
 }
 

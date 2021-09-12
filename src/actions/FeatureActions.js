@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { GET_FEATURE, GET_FEATURES, DELETE_FEATURE, GET_ERRORS, GET_FEATURE_TASK } from './types';
 
-
+import { proxy } from '../components/Constant/Proxy';
 
 export const createFeature = (feature, history) => async dispatch => {
     try{
-        await axios.post(`http://localhost:8080/api/feature`, feature)
+        await axios.post(`${proxy}/api/feature`, feature)
         history.push("/")
         dispatch({
             type: GET_ERRORS,
@@ -20,7 +20,7 @@ export const createFeature = (feature, history) => async dispatch => {
 }
 
 export const getFeatures = () => async dispatch => {
-    const res = await axios.get("http://localhost:8080/api/feature/all")
+    const res = await axios.get(`${proxy}/api/feature/all`)
     dispatch({
         type: GET_FEATURES,
         payload: res.data
@@ -30,7 +30,7 @@ export const getFeatures = () => async dispatch => {
 
 export const getFeature = (featureId, history) => async dispatch => {
     try{
-        const res = await axios.get(`http://localhost:8080/api/feature/${featureId}`)
+        const res = await axios.get(`${proxy}/api/feature/${featureId}`)
         dispatch({
             type: GET_FEATURE,
             payload: res.data
@@ -42,7 +42,7 @@ export const getFeature = (featureId, history) => async dispatch => {
 
 export const updateFeature = (feature, history) => async dispatch => {
     try{
-        await axios.put(`http://localhost:8080/api/feature`, feature)
+        await axios.put(`${proxy}/api/feature`, feature)
         history.push("/")
         dispatch({
             type: GET_ERRORS,
@@ -59,7 +59,7 @@ export const updateFeature = (feature, history) => async dispatch => {
 export const deleteFeature = id => async dispatch => {
     if(window.confirm("Are you sure?"))
     {
-        await axios.delete(`http://localhost:8080/api/feature/${id}`)
+        await axios.delete(`${proxy}/api/feature/${id}`)
         dispatch({
             type: DELETE_FEATURE,
             payload: id
@@ -70,7 +70,7 @@ export const deleteFeature = id => async dispatch => {
 
 export const getFeatureTask = (featureTaskId, history) => async dispatch => {
     try{
-        const res = await axios.get(`http://localhost:8080/api/task/${featureTaskId}`)
+        const res = await axios.get(`${proxy}/api/task/${featureTaskId}`)
         dispatch({
             type: GET_FEATURE_TASK,
             payload: res.data

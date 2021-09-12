@@ -26,6 +26,9 @@ import AddExtra from './components/Extra/AddExtra';
 import UpdateProduct from './components/Product/UpdateProduct';
 import UpdateExtra from './components/Extra/UpdateExtra';
 import NavBar from './components/Layout/NavBar';
+import UpdateProductTask from './components/Product/UpdateProductTask';
+import Register from './components/Contact/Register';
+import Login from './components/Contact/Login';
 
 
 class App extends Component {
@@ -41,6 +44,7 @@ class App extends Component {
        <Route exact path="/featureTask/:id" component={FeatureTaskItem} />
        <Route exact path="/addProduct" component={AddProduct} />
        <Route exact path="/updateProduct/:id" component={UpdateProduct} />
+       <Route exact path="/updateProductTask/:productlog_id/:pt_id" component={UpdateProductTask} />
        <Route exact path="/addAbout" component={AddAbout} />
        <Route exact path="/addIntro" component={AddIntro} />
        <Route exact path="/addClient" component={AddClient} />
@@ -52,6 +56,8 @@ class App extends Component {
        <Route exact path="/addProductTask/:id" component={AddProductTask} />
        <Route exact path="/addExtra" component={AddExtra} />
        <Route exact path="/updateExtra/:id" component={UpdateExtra} />
+       <Route exact path="/register" component={Register} />
+       <Route exact path="/login" component={Login} />
    <Footer/>
       </div>
       </Router>

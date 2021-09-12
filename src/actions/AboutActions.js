@@ -1,9 +1,10 @@
 import axios from "axios"
 import { DELETE_ABOUT, GET_ABOUT, GET_ABOUTS, GET_ERRORS} from "./types";
+import { proxy } from "../components/Constant/Proxy";
 
 export const createAbout = (about, history) => async dispatch => {
     try{
-        await axios.post(`http://localhost:8080/api/about`, about)
+        await axios.post(`${proxy}/api/about`, about)
         history.push("/about")
         dispatch({
             type: GET_ERRORS,
@@ -18,7 +19,7 @@ export const createAbout = (about, history) => async dispatch => {
 }
 
 export const getAbouts = () => async dispatch => {
-    const res = await axios.get("http://localhost:8080/api/about/all")
+    const res = await axios.get(`${proxy}/api/about/all`)
     dispatch({
         type: GET_ABOUTS,
         payload: res.data
@@ -28,7 +29,7 @@ export const getAbouts = () => async dispatch => {
 
 export const getAbout = (id, history) => async dispatch => {
     try{
-        const res = await axios.get(`http://localhost:8080/api/about/${id}`)
+        const res = await axios.get(`${proxy}/api/about/${id}`)
         dispatch({
             type: GET_ABOUT,
             payload: res.data
@@ -41,7 +42,7 @@ export const getAbout = (id, history) => async dispatch => {
 export const deleteAbout = id => async dispatch => {
     if(window.confirm("Are you sure?"))
     {
-        await axios.delete(`http://localhost:8080/api/about/${id}`)
+        await axios.delete(`${proxy}/api/about/${id}`)
         dispatch({
             type: DELETE_ABOUT,
             payload: id

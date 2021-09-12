@@ -1,10 +1,10 @@
 import axios from "axios"
 import { DELETE_EXTRA, GET_ERRORS, GET_EXTRA, GET_EXTRAS } from "./types";
-
+import { proxy } from "../components/Constant/Proxy";
 
 export const createExtra = (extra, history) => async dispatch => {
     try{
-        await axios.post(`http://localhost:8080/api/extra`, extra)
+        await axios.post(`${proxy}/api/extra`, extra)
         history.push("/")
         dispatch({
             type: GET_ERRORS,
@@ -19,7 +19,7 @@ export const createExtra = (extra, history) => async dispatch => {
 }
 
 export const getExtras = () => async dispatch => {
-    const res = await axios.get("http://localhost:8080/api/extra/all")
+    const res = await axios.get(`${proxy}/api/extra/all`)
     dispatch({
         type: GET_EXTRAS,
         payload: res.data
@@ -29,7 +29,7 @@ export const getExtras = () => async dispatch => {
 
 export const getExtra = (id, history) => async dispatch => {
     try{
-        const res = await axios.get(`http://localhost:8080/api/extra/${id}`)
+        const res = await axios.get(`${proxy}/api/extra/${id}`)
         dispatch({
             type: GET_EXTRA,
             payload: res.data
@@ -42,7 +42,7 @@ export const getExtra = (id, history) => async dispatch => {
 export const deleteExtra = id => async dispatch => {
     if(window.confirm("Are you sure?"))
     {
-        await axios.delete(`http://localhost:8080/api/extra/${id}`)
+        await axios.delete(`${proxy}/api/extra/${id}`)
         dispatch({
             type: DELETE_EXTRA,
             payload: id

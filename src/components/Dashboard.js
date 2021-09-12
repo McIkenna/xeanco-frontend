@@ -99,7 +99,8 @@ componentDidMount(){
                <Carousel 
                controls={false}
                indicators={false}>
-                   {extras.map(extra =>(
+                   {extras.map((extra, index) =>(
+                      
                    <Carousel.Item interval={5000}>
                    <ExtraItem key={extra.id} extra = {extra}/>
                    </Carousel.Item>

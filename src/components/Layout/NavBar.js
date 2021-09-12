@@ -21,7 +21,7 @@ function NavBar() {
     return (
     <nav className='navbar navbar-expand-lg navbar-dark' id = {colorChange ? style.navbar_active : style.navbar}>
     <div className="container-fluid">
-    <Link className="navbar-brand" to="/"><img src={logo} alt="..."/></Link>
+    <Link className="navbar-brand" to="/"><img src="logo" alt="..."/></Link>
     <div>
       <ul className={style.nav_elements}>
         <li className={style.nav_item}>

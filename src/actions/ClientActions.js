@@ -1,10 +1,10 @@
 import axios from "axios"
 import { DELETE_CLIENT, GET_CLIENT, GET_CLIENTS, GET_ERRORS } from "./types";
-
+import { proxy } from "../components/Constant/Proxy";
 
 export const createClient = (client, history) => async dispatch => {
     try{
-        await axios.post(`http://localhost:8080/api/client`, client)
+        await axios.post(`${proxy}/api/client`, client)
         history.push("/")
         dispatch({
             type: GET_ERRORS,
@@ -19,7 +19,7 @@ export const createClient = (client, history) => async dispatch => {
 }
 
 export const getClients = () => async dispatch => {
-    const res = await axios.get("http://localhost:8080/api/client/all")
+    const res = await axios.get(`${proxy}/api/client/all`)
     dispatch({
         type: GET_CLIENTS,
         payload: res.data
@@ -29,7 +29,7 @@ export const getClients = () => async dispatch => {
 
 export const getClient = (id, history) => async dispatch => {
     try{
-        const res = await axios.get(`http://localhost:8080/api/client/${id}`)
+        const res = await axios.get(`${proxy}/api/client/${id}`)
         dispatch({
             type: GET_CLIENT,
             payload: res.data
@@ -42,7 +42,7 @@ export const getClient = (id, history) => async dispatch => {
 export const deleteClient = id => async dispatch => {
     if(window.confirm("Are you sure?"))
     {
-        await axios.delete(`http://localhost:8080/api/client/${id}`)
+        await axios.delete(`${proxy}/api/client/${id}`)
         dispatch({
             type: DELETE_CLIENT,
             payload: id
