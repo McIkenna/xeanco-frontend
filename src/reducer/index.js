@@ -9,9 +9,10 @@ import FeatureTaskReducer from './FeatureTaskReducer'
 import IntroReducer from './IntroReducer'
 import ProductReducer from './ProductReducer'
 import ProductTaskReducer from './ProductTaskReducer'
+import securityReducer from './securityReducer'
 
 export default combineReducers ({
-    error: errorReducer,
+    errors: errorReducer,
     feature: FeatureReducer,
     featureTask: FeatureTaskReducer,
     product: ProductReducer,
@@ -19,5 +20,6 @@ export default combineReducers ({
     about: AboutReducer,
     intro: IntroReducer,
     client: ClientReducer,
-    extra: ExtraReducer
+    extra: ExtraReducer,
+    security: securityReducer
 })

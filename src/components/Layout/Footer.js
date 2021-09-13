@@ -1,10 +1,34 @@
 import React, { Component } from 'react'
 import styles from "./Footer.module.css"
 import {Link} from "react-router-dom"
+import { connect } from 'react-redux'
+import PropTypes from "prop-types"
+import { logout } from '../../actions/UserAction'
 
 export class Footer extends Component {
+	logout(){
+		this.props.logout();
+		window.location.href = "/"
+	}
+	
     render() {
+		const {validToken, user} = this.props.security;
+		let securityLinks;
+
+        if(validToken&&user){
+            securityLinks = <div>
+			<li ><Link onClick={this.logout.bind(this)} to="/">Logout</Link></li>
+			<li><Link to="/register">Register</Link></li>
+			</div>
+        }else{
+            securityLinks =  <div>
+			<li><Link to="/login">Login</Link></li>
+			
+		</div>;;
+        }
+	
         return (
+			
             <div>
           <footer>
 	<div className={styles.content}>
@@ -20,9 +44,8 @@ export class Footer extends Component {
 		<div className={styles.link_boxes}>
 			<ul className={styles.box}>
 				<li className={styles.link_name}>Links</li>
-				<li> <Link aria-current="page" to="/">Home</Link></li>
-				<li><a href="/login">Login</a></li>
-				<li><Link to="/register">Register</Link></li>
+				<li> <Link aria-current="page" to="#">Home</Link></li>
+				{securityLinks}
 				<li><a href="#">Contact</a></li>
 				<li><Link aria-current="page" to="/about">About</Link></li>
 				
@@ -73,4 +96,12 @@ export class Footer extends Component {
     }
 }
 
-export default Footer
+Footer.propTypes = {
+    logout: PropTypes.func.isRequired,
+    security: PropTypes.object.isRequired
+}
+
+const mapStateToProps =state => ({
+    security: state.security
+})
+export default connect(mapStateToProps, {logout})(Footer)

@@ -28,6 +28,23 @@ export class ExtraItem extends Component {
  }
     render() {
         const {extra} = this.props;
+        const {validToken, user} = this.props.security;
+
+        const userIsAuthenticated = (
+            <div>
+             <Link to={`/updateExtra/${extra.id}`} className="btn btn-outline-secondary me-2" disabled>Update</Link>
+    <button className="btn btn-danger" onClick={this.onDelete.bind(this, extra.id)}>Delete</button>
+   	   </div>)
+
+
+        let securedLinks;
+
+        if(validToken&&user){
+            securedLinks = userIsAuthenticated;
+        }else{
+            securedLinks = "";
+        }
+
         const extraImage1 = `data:image/jpeg;base64,${extra.img1}`
         const extraImage2 = `data:image/jpeg;base64,${extra.img2}`
         const extraImage3 = `data:image/jpeg;base64,${extra.img3}`
@@ -42,9 +59,9 @@ export class ExtraItem extends Component {
     <div className={styles.card__content_text}>
     <h2 className={styles.card__content_header}>{extra.extraName}</h2>
     <p className={styles.card__content_paragraph} onClick={this.onClickeRead}>..Read More</p>
-    <Link to={`/updateExtra/${extra.id}`} className="btn btn-outline-secondary me-2" disabled>Update</Link>
-    <button className="btn btn-danger" onClick={this.onDelete.bind(this, extra.id)}>Delete</button>
-    </div>
+   {
+    securedLinks
+   } </div>
     </div>
   </div>
   <div className={this.state.isToggleOn ? styles.card_summary_active:styles.card_summary  }>
@@ -69,6 +86,12 @@ export class ExtraItem extends Component {
     }
 }
 ExtraItem.propTypes = {
-    deleteExtra: PropTypes.func.isRequired
+    deleteExtra: PropTypes.func.isRequired,
+    security: PropTypes.object.isRequired
+
 }
-export default connect(null, {deleteExtra})(ExtraItem)
+
+const mapStateToProps = state => ({
+    security: state.security
+})
+export default connect(mapStateToProps, {deleteExtra})(ExtraItem)

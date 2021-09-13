@@ -29,8 +29,30 @@ import NavBar from './components/Layout/NavBar';
 import UpdateProductTask from './components/Product/UpdateProductTask';
 import Register from './components/Contact/Register';
 import Login from './components/Contact/Login';
+import jwt_decode from "jwt-decode";
+import JwtToken from './components/Security/JwtToken';
+import {SET_CURRENT_USER} from "./actions/types";
+import { logout } from './actions/UserAction';
+import SecuredRoute from './components/Security/SecuredRoute';
 
 
+const jwtToken = localStorage.jwtToken;
+
+
+if(jwtToken){
+  JwtToken(jwtToken)
+  const decoded_jwtToken = jwt_decode(jwtToken);
+  store.dispatch({
+    type: SET_CURRENT_USER,
+    payload: decoded_jwtToken
+  })
+
+  const currentTime = Date.now()/1000
+  if(decoded_jwtToken.exp<currentTime){
+    store.dispatch(logout())
+    window.location.href = "/"
+  }
+}
 class App extends Component {
   render(){
     return (
@@ -38,26 +60,34 @@ class App extends Component {
       <Router>
       <div className="App">
        <NavBar />
+
+
+
        <Route exact path="/" component={Dashboard} />
-       <Route exact path="/addFeature" component={AddFeature} />
-       <Route exact path="/updateFeature/:id" component={UpdateFeature} />
-       <Route exact path="/featureTask/:id" component={FeatureTaskItem} />
-       <Route exact path="/addProduct" component={AddProduct} />
-       <Route exact path="/updateProduct/:id" component={UpdateProduct} />
-       <Route exact path="/updateProductTask/:productlog_id/:pt_id" component={UpdateProductTask} />
-       <Route exact path="/addAbout" component={AddAbout} />
-       <Route exact path="/addIntro" component={AddIntro} />
-       <Route exact path="/addClient" component={AddClient} />
-       <Route exact path="/updateCLient/:id" component={UpdateClient} />
-       <Route exact path="/updateIntro/:id" component={UpdateIntro} />
-       <Route exact path="/about" component={About} />
-       <Route exact path="/updateAbout/:id" component={UpdateAbout} />
-       <Route exact path="/productBoard/:id" component={ProductBoard} />
-       <Route exact path="/addProductTask/:id" component={AddProductTask} />
-       <Route exact path="/addExtra" component={AddExtra} />
-       <Route exact path="/updateExtra/:id" component={UpdateExtra} />
-       <Route exact path="/register" component={Register} />
+      
        <Route exact path="/login" component={Login} />
+       <Route exact path="/featureTask/:id" component={FeatureTaskItem} />
+       <Route exact path="/about" component={About} />
+       <Route exact path="/productBoard/:id" component={ProductBoard} />
+
+      <SecuredRoute exact path="/addFeature" component={AddFeature} />
+       <SecuredRoute exact path="/updateFeature/:id" component={UpdateFeature} />
+       <SecuredRoute exact path="/register" component={Register} />
+       <SecuredRoute exact path="/addProduct" component={AddProduct} />
+       <SecuredRoute exact path="/updateProduct/:id" component={UpdateProduct} />
+       <SecuredRoute exact path="/updateProductTask/:productlog_id/:pt_id" component={UpdateProductTask} />
+       <SecuredRoute exact path="/addAbout" component={AddAbout} />
+       <SecuredRoute exact path="/addIntro" component={AddIntro} />
+       <SecuredRoute exact path="/addClient" component={AddClient} />
+       <SecuredRoute exact path="/updateCLient/:id" component={UpdateClient} />
+       <SecuredRoute exact path="/updateIntro/:id" component={UpdateIntro} />
+       
+       <SecuredRoute exact path="/updateAbout/:id" component={UpdateAbout} />
+      
+       <SecuredRoute exact path="/addProductTask/:id" component={AddProductTask} />
+       <SecuredRoute exact path="/addExtra" component={AddExtra} />
+       <SecuredRoute exact path="/updateExtra/:id" component={UpdateExtra} />
+       
    <Footer/>
       </div>
       </Router>

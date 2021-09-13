@@ -5,6 +5,7 @@ import PropTypes from "prop-types"
 import { getAbouts } from '../../actions/AboutActions';
 import { deleteAbout } from '../../actions/AboutActions';
 import style from "./about.module.css"
+import ValidateAbout from './ValidateAbout';
 
 export class About extends Component {
     onDelete = id =>{
@@ -15,8 +16,10 @@ export class About extends Component {
          //this.props.getFeatureTask();
      }
 
+
     render() {
         const {abouts} = this.props.about;
+        const {validToken, user} = this.props.security;  
         return (
     <div className={style.aboutContainer}>
    {abouts.map((about) => (
@@ -29,8 +32,12 @@ export class About extends Component {
          <p className={style.card_text}>{about.aboutDescription}</p>
        </div>
        </div>
-       <button className="btn btn-danger" onClick={this.onDelete.bind(this, about.id)}>Delete</button>
-        <Link to={`/updateAbout/${about.id}`} className="btn btn-outline-secondary me-2" disabled>Update</Link>
+     <ValidateAbout 
+     validToken = {validToken}
+     user = {user}
+     about = {about}
+     onClick={this.onDelete.bind(this, about.id)}
+     />
        </div>
    ))}
 </div>
@@ -41,9 +48,11 @@ export class About extends Component {
 About.propTypes = {
     deleteAbout: PropTypes.func.isRequired,
     getAbouts: PropTypes.func.isRequired,
-    about : PropTypes.object.isRequired
+    about : PropTypes.object.isRequired,
+    security: PropTypes.object.isRequired
 }
 const mapStateToProps = state => ({
-    about : state.about
+    about : state.about,
+    security: state.security
 })
 export default connect(mapStateToProps, {getAbouts, deleteAbout})(About)

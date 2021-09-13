@@ -13,6 +13,22 @@ export class IntroItem extends Component {
  }
     render() {
         const {intro} = this.props;
+        const {validToken, user} = this.props.security;
+
+        const userIsAuthenticated = (
+            <div>
+            <Link to={`/updateIntro/${intro.id}`} className="btn btn-outline-secondary me-2">Update</Link>
+            <button className="btn btn-danger" onClick={this.onDelete.bind(this, intro.id)}>Delete</button>
+            </div>)
+
+
+        let securedLinks;
+
+        if(validToken&&user){
+            securedLinks = userIsAuthenticated;
+        }else{
+            securedLinks = "";
+        }
         const introImage = `data:image/jpeg;base64,${intro.image}`
         return (
 
@@ -27,9 +43,8 @@ export class IntroItem extends Component {
             <div className={classes.text}>
             <h1>{intro.introName}</h1>
             <p className={classes.lead}>{intro.introDescription}</p>
-            <Link to={`/updateIntro/${intro.id}`} className="btn btn-outline-secondary me-2">Update</Link>
-          <button className="btn btn-danger" onClick={this.onDelete.bind(this, intro.id)}>Delete</button>
-   </div>
+           {securedLinks}
+            </div>
             </Carousel.Caption>
                    </div>
              
@@ -39,7 +54,13 @@ export class IntroItem extends Component {
 
 IntroItem.propTypes = {
     deleteIntro: PropTypes.func.isRequired,
+    security: PropTypes.object.isRequired
 
 }
 
-export default connect(null, {deleteIntro})(IntroItem)
+const mapStateToProps = state => ({
+    security: state.security
+})
+
+
+export default connect(mapStateToProps, {deleteIntro})(IntroItem)

@@ -38,3 +38,9 @@ export const DELETE_CLIENT = "DELETE_CLIENT";
 export const GET_EXTRA = "GET_EXTRA";
 export const GET_EXTRAS= "GET_EXTRAS";
 export const DELETE_EXTRA = "DELETE_EXTRA";
+
+//USer Page
+export const GET_USER = "GET_USER";
+export const GET_USERS= "GET_USERS";
+export const DELETE_USER = "DELETE_USER";
+export const SET_CURRENT_USER = "SET_CURRENT_USER";

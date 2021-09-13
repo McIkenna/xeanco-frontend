@@ -10,20 +10,41 @@ export class ClientItem extends Component {
  }
     render() {
         const {client} = this.props;
+        const {validToken, user} = this.props.security;
+
+        const userIsAuthenticated = (
+            <div>
+            <Link to={`/updateClient/${client.id}`} className="btn btn-outline-secondary me-2" disabled>Update</Link>
+    <button className="btn btn-danger" onClick={this.onDelete.bind(this, client.id)}>Delete</button>
+   </div>)
+
+
+        let securedLinks;
+
+        if(validToken&&user){
+            securedLinks = userIsAuthenticated;
+        }else{
+            securedLinks = "";
+        }
         const clientImage = `data:image/jpeg;base64,${client.clientImg}`
         return (
     <div>
     <img className={styles.card_img_top} src={clientImage} alt="Card image cap"/>
     <p className={styles.card_text}>{client.clientName}</p>
-    <Link to={`/updateClient/${client.id}`} className="btn btn-outline-secondary me-2" disabled>Update</Link>
-    <button className="btn btn-danger" onClick={this.onDelete.bind(this, client.id)}>Delete</button>
-  </div>
+    {securedLinks}
+      </div>
    
         
         )
     }
 }
 ClientItem.propTypes = {
-    deleteClient: PropTypes.func.isRequired
+    deleteClient: PropTypes.func.isRequired,
+    security: PropTypes.object.isRequired
+
 }
-export default connect(null, {deleteClient})(ClientItem)
+
+const mapStateToProps = state => ({
+    security: state.security
+})
+export default connect(mapStateToProps, {deleteClient})(ClientItem)

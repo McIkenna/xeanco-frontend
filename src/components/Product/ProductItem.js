@@ -11,6 +11,23 @@ export class ProductItem extends Component {
 
     render() {
         const {product} = this.props;
+		const {validToken, user} = this.props.security;
+
+        const userIsAuthenticated = (
+            <div>
+            <Link to={`/addProductTask/${product.productIdentifier}`} className="btn btn-outline-secondary me-2" disabled>Add Task</Link>
+               <Link to={`/updateProduct/${product.productIdentifier}`} className="btn btn-outline-secondary me-2" disabled>Update</Link>
+			   <button className="btn btn-danger" onClick={this.onDelete.bind(this, product.productIdentifier)}>Delete</button>
+			   </div>)
+
+
+        let securedLinks;
+
+        if(validToken&&user){
+            securedLinks = userIsAuthenticated;
+        }else{
+            securedLinks = "";
+        }
         const productImage = `data:image/jpeg;base64,${product.productImg}`
         return (
 		<div className={styles.poster_container}>
@@ -24,10 +41,10 @@ export class ProductItem extends Component {
             </Link>				
 				<div className={styles.poster_summary}>{product.productSummary}</div>
 				<ul className={styles.postcard__tagbox}>
-				<Link to={`/addProductTask/${product.productIdentifier}`} className="btn btn-outline-secondary me-2" disabled>Add Task</Link>
-               <Link to={`/updateProduct/${product.productIdentifier}`} className="btn btn-outline-secondary me-2" disabled>Update</Link>
-			   <button className="btn btn-danger" onClick={this.onDelete.bind(this, product.productIdentifier)}>Delete</button>
-				</ul>
+					{
+					securedLinks
+					}
+					</ul>
 			</div>
 
 			<div  className={styles.poster_img}>
@@ -45,7 +62,13 @@ export class ProductItem extends Component {
 }
 
 ProductItem.propTypes = {
-    deleteProduct: PropTypes.func.isRequired
+    deleteProduct: PropTypes.func.isRequired,
+    security: PropTypes.object.isRequired
+
 }
 
-export default connect(null, {deleteProduct})(ProductItem)
+const mapStateToProps = state => ({
+    security: state.security
+})
+
+export default connect(mapStateToProps, {deleteProduct})(ProductItem)

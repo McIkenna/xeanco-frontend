@@ -10,6 +10,24 @@ export class FeatureItem extends Component {
     }
     render() {
         const {feature} = this.props;
+
+        const {validToken, user} = this.props.security;
+
+        const userIsAuthenticated = (
+            <div>
+            <Link to={`/updateFeature/${feature.featureIdentifier}`} className="btn btn-outline-secondary me-2" disabled>Update</Link>
+               <button className="btn btn-danger" onClick={this.onDelete.bind(this, feature.featureIdentifier)}>Delete</button>
+           </div>)
+
+
+        let securedLinks;
+
+        if(validToken&&user){
+            securedLinks = userIsAuthenticated;
+        }else{
+            securedLinks = "";
+        }
+
         const featureImage = `data:image/jpeg;base64,${feature.featureImage}`
         return (
             <div className={classes.container}>
@@ -31,14 +49,13 @@ export class FeatureItem extends Component {
                 <p className={classes.label_paragraph}>{feature.featureDescription}</p>
               </div>
               <div className={classes.box}>
+                {securedLinks}
                 <div
                >
                   <div className={classes.bar}></div>
                 </div>
           
-               <Link to={`/updateFeature/${feature.featureIdentifier}`} className="btn btn-outline-secondary me-2" disabled>Update</Link>
-               <button className="btn btn-danger" onClick={this.onDelete.bind(this, feature.featureIdentifier)}>Delete</button>
-              </div>
+                    </div>
             </div>          
           </div>
     </div>
@@ -47,8 +64,13 @@ export class FeatureItem extends Component {
 }
 
 FeatureItem.propTypes = {
-    deleteFeature: PropTypes.func.isRequired
+    deleteFeature: PropTypes.func.isRequired,
+    security: PropTypes.object.isRequired
+
 }
 
+const mapStateToProps = state => ({
+    security: state.security
+})
 
-export default connect(null, {deleteFeature})(FeatureItem)
+export default connect(mapStateToProps, {deleteFeature})(FeatureItem)

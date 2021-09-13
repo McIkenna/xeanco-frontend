@@ -12,6 +12,24 @@ export class ProductTask extends Component {
 }
     render() {
       const {product_task} = this.props;
+      const {validToken, user} = this.props.security;
+
+      const userIsAuthenticated = (
+          <div>
+          <Link 
+    to={`/updateProductTask/${product_task.productIdentifier}/${product_task.productSequence}`} 
+    className="btn btn-outline-secondary me-2" disabled>Update</Link>
+		<button className="btn btn-danger" onClick={this.onDelete.bind(this, product_task.productIdentifier, product_task.productSequence)}>Delete</button>
+			 </div>)
+
+
+      let securedLinks;
+
+      if(validToken&&user){
+          securedLinks = userIsAuthenticated;
+      }else{
+          securedLinks = "";
+      }
       const productTaskImage = `data:image/jpeg;base64,${product_task.productTskImg}`
       
         return (
@@ -28,11 +46,7 @@ export class ProductTask extends Component {
           <p className={style.card_paragraph} id={style.paragraph2}>{product_task.productTskDetail}</p><br />
           
         </div>
-    <Link 
-    to={`/updateProductTask/${product_task.productIdentifier}/${product_task.productSequence}`} 
-    className="btn btn-outline-secondary me-2" disabled>Update</Link>
-		<button className="btn btn-danger" onClick={this.onDelete.bind(this, product_task.productIdentifier, product_task.productSequence)}>Delete</button>
-			
+   {securedLinks}
       </div>
 </div>
 </div>
@@ -44,7 +58,12 @@ export class ProductTask extends Component {
 }
 
 ProductTask.propTypes = {
-  deleteProductTask: PropTypes.func.isRequired
+  deleteProductTask: PropTypes.func.isRequired,
+  security: PropTypes.object.isRequired
+
 }
 
-export default connect(null, {deleteProductTask})(ProductTask)
+const mapStateToProps = state => ({
+  security: state.security
+})
+export default connect(mapStateToProps, {deleteProductTask})(ProductTask)
