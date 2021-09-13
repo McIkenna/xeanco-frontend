@@ -180,6 +180,15 @@ footer{
   .bottom_details .bottom_text a{
     margin-right: 10px;
   }
+  .box p{
+    color: #fefefe;
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: all 0.4s ease;
+    font-family: 'Patrick Hand', cursive;
+  }
   @media (max-width: 900px) {
     footer .content .link_boxes{
       flex-wrap: wrap;

@@ -5,7 +5,7 @@ import { proxy } from '../components/Constant/Proxy';
 
 export const createFeature = (feature, history) => async dispatch => {
     try{
-        await axios.post(`${proxy}/api/feature`, feature)
+        await axios.post(`${proxy}/admin/feature`, feature)
         history.push("/")
         dispatch({
             type: GET_ERRORS,
@@ -42,7 +42,7 @@ export const getFeature = (featureId, history) => async dispatch => {
 
 export const updateFeature = (feature, history) => async dispatch => {
     try{
-        await axios.put(`${proxy}/api/feature`, feature)
+        await axios.put(`${proxy}/admin/feature`, feature)
         history.push("/")
         dispatch({
             type: GET_ERRORS,
@@ -59,7 +59,7 @@ export const updateFeature = (feature, history) => async dispatch => {
 export const deleteFeature = id => async dispatch => {
     if(window.confirm("Are you sure?"))
     {
-        await axios.delete(`${proxy}/api/feature/${id}`)
+        await axios.delete(`${proxy}/admin/feature/${id}`)
         dispatch({
             type: DELETE_FEATURE,
             payload: id

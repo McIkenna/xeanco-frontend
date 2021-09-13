@@ -4,7 +4,7 @@ import { proxy } from "../components/Constant/Proxy";
 
 export const createIntro = (intro, history) => async dispatch => {
     try{
-        await axios.post(`${proxy}/api/intro`, intro)
+        await axios.post(`${proxy}/admin/intro`, intro)
         history.push("/")
         dispatch({
             type: GET_ERRORS,
@@ -42,7 +42,7 @@ export const getIntro = (id, history) => async dispatch => {
 export const deleteIntro = id => async dispatch => {
     if(window.confirm("Are you sure?"))
     {
-        await axios.delete(`${proxy}/api/intro/${id}`)
+        await axios.delete(`${proxy}/admin/intro/${id}`)
         dispatch({
             type: DELETE_INTRO,
             payload: id
@@ -52,7 +52,7 @@ export const deleteIntro = id => async dispatch => {
 
 export const updateIntro = (intro, history) => async dispatch => {
     try{
-        await axios.put(`${proxy}/api/intro`, intro)
+        await axios.put(`${proxy}/admin/intro`, intro)
         history.push("/")
         dispatch({
             type: GET_ERRORS,

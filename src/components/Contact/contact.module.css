@@ -17,3 +17,12 @@
     background: linear-gradient(to right, #c8d8e4 50%,  #2b6777 50%);
 
 }
+
+.contact_into{
+    color: #c8d8e4;
+}
+
+
+.contact_into h1{
+    font-family:'Varela Round', sans-serif;
+}

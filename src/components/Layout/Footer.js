@@ -44,35 +44,29 @@ export class Footer extends Component {
 		<div className={styles.link_boxes}>
 			<ul className={styles.box}>
 				<li className={styles.link_name}>Links</li>
-				<li> <Link aria-current="page" to="#">Home</Link></li>
+				<li> <Link aria-current="page" to="/">Home</Link></li>
 				{securityLinks}
-				<li><a href="#">Contact</a></li>
+				<li><Link aria-current="page" to="/contact">Contact</Link></li>
 				<li><Link aria-current="page" to="/about">About</Link></li>
 				
 			
 			</ul>
-			<ul className={styles.box}>
-				<li className={styles.link_name}>Services</li>
-				<li><a href="#">App Design</a></li>
-				<li><a href="#">Web Design</a></li>
-				<li><a href="#">Logo Design</a></li>
-				<li><a href="#">Banner Design</a></li>
-			
-			</ul>
-            <ul className={styles.box}>
-				<li className={styles.link_name}>Other services</li>
-				<li><a href="#">SEO</a></li>
-				<li><a href="#">Content Marketing</a></li>
-				<li><a href="#">Prints</a></li>
-				<li><a href="#">Social Media</a></li>
-			
-			</ul>
+		            
 			<ul  className={styles.box}>
 				<li className={styles.link_name}>Contact</li>
-				<li><a href="#">+91 8879887262</a></li>
-				<li><a href="#">+91 8879887262</a></li>
+				<li><a href="#">+971588568091</a></li>
+				<li><a href="#">+2347067663299</a></li>
 				<li><a href="#">xeancointernationalltd@gmail.com</a></li>
 				
+			
+			</ul>
+			<ul className={styles.box}>
+				<p>
+					HeadOffice : 101 Mal Tower, Al Nahda Dubai-UAE
+				</p>
+				<p>
+					Branch : 004 Swissguard Plaza Ogui road Enugu, Nigeria
+				</p>
 			
 			</ul>
 			

@@ -30,7 +30,7 @@ export class ClientItem extends Component {
         return (
     <div>
     <img className={styles.card_img_top} src={clientImage} alt="Card image cap"/>
-    <p className={styles.card_text}>{client.clientName}</p>
+
     {securedLinks}
       </div>
    

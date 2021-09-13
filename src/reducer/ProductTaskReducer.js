@@ -1,9 +1,10 @@
 import {} from "../actions/ProductActions"
-import { DELETE_PRODUCT_TASK, GET_PRODUCT_TASK, GET_PRODUCT_TASKS } from "../actions/types"
+import { DELETE_PRODUCT_TASK, GET_ALL_PRODUCT_TASKS, GET_PRODUCT_TASK, GET_PRODUCT_TASKS } from "../actions/types"
 
 const initialState = {
     product_tasks: [],
-    product_task: {}
+    product_task: {},
+    all_products_tasks: []
 }
 
 
@@ -19,6 +20,11 @@ export default function(state = initialState, action){
             return {
                 ...state,
                 product_tasks: action.payload
+            }
+        case GET_ALL_PRODUCT_TASKS:
+            return {
+                ...state,
+                all_products_tasks: action.payload
             }
         case DELETE_PRODUCT_TASK:
             return{

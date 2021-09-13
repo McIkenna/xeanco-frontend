@@ -1,9 +1,9 @@
 import axios from "axios"
-import { DELETE_PRODUCT, DELETE_PRODUCT_TASK, GET_ERRORS, GET_PRODUCT, GET_PRODUCTLOG, GET_PRODUCTS, GET_PRODUCT_TASK, GET_PRODUCT_TASKS } from "./types";
+import { DELETE_PRODUCT, DELETE_PRODUCT_TASK, GET_ALL_PRODUCT_TASKS, GET_ERRORS, GET_PRODUCT, GET_PRODUCTLOG, GET_PRODUCTS, GET_PRODUCT_TASK, GET_PRODUCT_TASKS } from "./types";
 import { proxy } from "../components/Constant/Proxy";
 export const createProduct = (product, history) => async dispatch => {
     try{
-        await axios.post(`${proxy}/api/product`, product)
+        await axios.post(`${proxy}/admin/product`, product)
         history.push("/")
         dispatch({
             type: GET_ERRORS,
@@ -41,7 +41,7 @@ export const getProduct = (productId, history) => async dispatch => {
 export const deleteProduct = id => async dispatch => {
     if(window.confirm("Are you sure?"))
     {
-        await axios.delete(`${proxy}/api/product/${id}`)
+        await axios.delete(`${proxy}/admin/product/${id}`)
         dispatch({
             type: DELETE_PRODUCT,
             payload: id
@@ -52,7 +52,7 @@ export const deleteProduct = id => async dispatch => {
 
 export const updateProduct = (product, history) => async dispatch => {
     try{
-        await axios.put(`${proxy}/api/product`, product)
+        await axios.put(`${proxy}/admin/product`, product)
         history.push("/")
         dispatch({
             type: GET_ERRORS,
@@ -73,7 +73,7 @@ export const createProductTask = (
     history
   ) => async dispatch => {
     try {
-      await axios.post(`${proxy}/api/productTask/${productIdentifier_id}`, product_task);
+      await axios.post(`${proxy}/admin/productTask/${productIdentifier_id}`, product_task);
       history.push(`${proxy}/productBoard/${productIdentifier_id}`);
       dispatch({
         type: GET_ERRORS,
@@ -114,7 +114,7 @@ export const createProductTask = (
     history
   ) => async dispatch => {
     try {
-      await axios.put(`${proxy}/api/productTask/${productlog_id}/${pt_id}`, product_task);
+      await axios.put(`${proxy}/admin/productTask/${productlog_id}/${pt_id}`, product_task);
       history.push(`/productBoard/${productlog_id}`);
       dispatch({
         type: GET_ERRORS,
@@ -133,7 +133,7 @@ export const createProductTask = (
     pt_id) => async dispatch => {
     if(window.confirm("Are you sure?"))
     {
-        await axios.delete(`${proxy}/api/productTask/${productlog_id}/${pt_id}`)
+        await axios.delete(`${proxy}/admin/productTask/${productlog_id}/${pt_id}`)
         dispatch({
             type: DELETE_PRODUCT_TASK,
             payload: pt_id
@@ -142,6 +142,15 @@ export const createProductTask = (
     }
 }
 
+export const getAllProductTasks = ()=> async dispatch => {
+  try {
+    const res = await axios.get(`${proxy}/api/productTask/all`);
+    dispatch({
+      type: GET_ALL_PRODUCT_TASKS,
+      payload: res.data
+    });
+  } catch (err) {}
+};
 /*
 
 export const getFeatureTask = (featureTaskId, history) => async dispatch => {

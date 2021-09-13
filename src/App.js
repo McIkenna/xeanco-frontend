@@ -34,6 +34,8 @@ import JwtToken from './components/Security/JwtToken';
 import {SET_CURRENT_USER} from "./actions/types";
 import { logout } from './actions/UserAction';
 import SecuredRoute from './components/Security/SecuredRoute';
+import ContactUs from './components/Contact/ContactUs';
+import AllProducts from './components/Product/AllProducts';
 
 
 const jwtToken = localStorage.jwtToken;
@@ -69,6 +71,8 @@ class App extends Component {
        <Route exact path="/featureTask/:id" component={FeatureTaskItem} />
        <Route exact path="/about" component={About} />
        <Route exact path="/productBoard/:id" component={ProductBoard} />
+       <Route exact path="/contact" component={ContactUs} />
+       <Route exact path="/service" component={AllProducts} />
 
       <SecuredRoute exact path="/addFeature" component={AddFeature} />
        <SecuredRoute exact path="/updateFeature/:id" component={UpdateFeature} />

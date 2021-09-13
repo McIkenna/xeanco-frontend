@@ -4,7 +4,7 @@ import { proxy } from "../components/Constant/Proxy";
 
 export const createExtra = (extra, history) => async dispatch => {
     try{
-        await axios.post(`${proxy}/api/extra`, extra)
+        await axios.post(`${proxy}/admin/extra`, extra)
         history.push("/")
         dispatch({
             type: GET_ERRORS,
@@ -42,7 +42,7 @@ export const getExtra = (id, history) => async dispatch => {
 export const deleteExtra = id => async dispatch => {
     if(window.confirm("Are you sure?"))
     {
-        await axios.delete(`${proxy}/api/extra/${id}`)
+        await axios.delete(`${proxy}/admin/extra/${id}`)
         dispatch({
             type: DELETE_EXTRA,
             payload: id
