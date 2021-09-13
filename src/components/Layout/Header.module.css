@@ -22,14 +22,14 @@ background-color: #fefefeb7;
 .nav_link{
     text-decoration: none;
     letter-spacing: 0.2em;
- 
+    margin: 0 0.5rem;
     color: #fefefe;
   
     font-family: 'Montserrat', sans-serif;
 }
 .nav_item{
     background-color: #52ab98;
-    border-radius: 20px;
+    
     padding: 4px 1.5em;
     margin: 0 2%;
 }
